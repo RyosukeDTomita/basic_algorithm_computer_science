@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #define ARRAY_SIZE 20
 
-int* bubble_sort(int array[], int array_size);
+int* insert_sort(int array[], int array_size);
 int* create_random_array(void);
 void print_array(int* array, int array_size);
 
@@ -22,17 +22,17 @@ int* create_random_array(void) {
 }
 
 /**
- * bubble sort
+ * insert sort
  */
-int* bubble_sort(int* array, int array_size) {
-  for (int i = 0; i < array_size; i++) {
-    for (int j = 0; j < array_size - i - 1; j++) {
-      if (array[j] > array[j + 1]) {
-        int tmp = array[j + 1];
-        array[j + 1] = array[j];
-        array[j] = tmp;
-      }
+int* insert_sort(int* array, int array_size) {
+  for (int i = 1; i < ARRAY_SIZE; i++) {
+    int tmp = array[i];
+    int j = i;
+    while (j > 0 && array[j - 1] > tmp) {
+      array[j] = array[j - 1];
+      j--;
     }
+    array[j] = tmp;
   }
   return array;
 }
@@ -53,9 +53,9 @@ int main(void) {
   int* random_array = create_random_array();
   print_array(random_array, ARRAY_SIZE);
 
-  printf("-----bubble, sort-----\n");
+  printf("-----insert, sort-----\n");
 
-  int* sorted_array = bubble_sort(random_array, ARRAY_SIZE);
+  int* sorted_array = insert_sort(random_array, ARRAY_SIZE);
   print_array(sorted_array, ARRAY_SIZE);
 
   // メモリを開放する。

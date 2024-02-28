@@ -4,11 +4,17 @@
 左右のデータを比較して小さい方を右に配置する。
 """
 import random
+from typing import List
 
 
-def bubble_sort(array: list) -> list:
-    """
+def bubble_sort(array: List[int]) -> List[int]:
+    """_summary_
     左端から2つずつデータを比較して小さいほうが配列の左にくるように入れ替えていく。
+
+    Args:
+        array : List[int]
+
+    Returns: List[int]
     """
     for i in range(len(array)):
         # jはi回目のループで配列の右隣との比較が終わっていないarrayのindex

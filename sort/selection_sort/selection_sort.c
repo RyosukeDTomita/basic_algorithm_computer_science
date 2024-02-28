@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #define ARRAY_SIZE 20
 
-int* bubble_sort(int array[], int array_size);
+int* insert_sort(int array[], int array_size);
 int* create_random_array(void);
 void print_array(int* array, int array_size);
 
@@ -22,15 +22,18 @@ int* create_random_array(void) {
 }
 
 /**
- * bubble sort
+ * selection sort
  */
-int* bubble_sort(int* array, int array_size) {
-  for (int i = 0; i < array_size; i++) {
-    for (int j = 0; j < array_size - i - 1; j++) {
-      if (array[j] > array[j + 1]) {
-        int tmp = array[j + 1];
-        array[j + 1] = array[j];
-        array[j] = tmp;
+int* selection_sort(int* array, int array_size) {
+  for (int i = 0; i < ARRAY_SIZE; i++) {
+    int min_idx = i;  // 仮の最小値が格納されたindex
+
+    // 配列のi番目より右側の最小値を求める
+    for (int j = i; j < ARRAY_SIZE; j++) {
+      if (array[j] < array[min_idx]) {
+        int tmp = array[j];
+        array[j] = array[min_idx];
+        array[min_idx] = tmp;
       }
     }
   }
@@ -53,9 +56,9 @@ int main(void) {
   int* random_array = create_random_array();
   print_array(random_array, ARRAY_SIZE);
 
-  printf("-----bubble, sort-----\n");
+  printf("-----selection, sort-----\n");
 
-  int* sorted_array = bubble_sort(random_array, ARRAY_SIZE);
+  int* sorted_array = selection_sort(random_array, ARRAY_SIZE);
   print_array(sorted_array, ARRAY_SIZE);
 
   // メモリを開放する。
