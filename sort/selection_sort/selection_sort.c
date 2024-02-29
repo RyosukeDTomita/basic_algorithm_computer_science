@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #define ARRAY_SIZE 20
 
-int* insert_sort(int array[], int array_size);
+void insert_sort(int array[], int array_size);
 int* create_random_array(void);
 void print_array(int* array, int array_size);
 
@@ -24,7 +24,7 @@ int* create_random_array(void) {
 /**
  * selection sort
  */
-int* selection_sort(int* array, int array_size) {
+void selection_sort(int* array, int array_size) {
   for (int i = 0; i < ARRAY_SIZE; i++) {
     int min_idx = i;  // 仮の最小値が格納されたindex
 
@@ -37,7 +37,6 @@ int* selection_sort(int* array, int array_size) {
       }
     }
   }
-  return array;
 }
 
 /**
@@ -58,8 +57,8 @@ int main(void) {
 
   printf("-----selection, sort-----\n");
 
-  int* sorted_array = selection_sort(random_array, ARRAY_SIZE);
-  print_array(sorted_array, ARRAY_SIZE);
+  selection_sort(random_array, ARRAY_SIZE);
+  print_array(random_array, ARRAY_SIZE);
 
   // メモリを開放する。
   free(random_array);

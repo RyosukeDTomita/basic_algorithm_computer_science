@@ -8,11 +8,7 @@ from typing import List
 
 def insert_sort(array: List[int]) -> List[int]:
     """_summary_
-
-    Args:
-        array List[int]
-
-    Returns: List[int]
+    左から挿入する値の候補にし，その取り出したindexより左側の値と比較し，小さければ入れ替える操作を繰り返す。
     """
     # 左から挿入する値の候補にする。
     # ループが1から始まっているのに注意。

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #define ARRAY_SIZE 20
 
-int* insert_sort(int array[], int array_size);
+void insert_sort(int array[], int array_size);
 int* create_random_array(void);
 void print_array(int* array, int array_size);
 
@@ -24,7 +24,7 @@ int* create_random_array(void) {
 /**
  * insert sort
  */
-int* insert_sort(int* array, int array_size) {
+void insert_sort(int* array, int array_size) {
   for (int i = 1; i < ARRAY_SIZE; i++) {
     int tmp = array[i];
     int j = i;
@@ -34,7 +34,6 @@ int* insert_sort(int* array, int array_size) {
     }
     array[j] = tmp;
   }
-  return array;
 }
 
 /**
@@ -55,8 +54,8 @@ int main(void) {
 
   printf("-----insert, sort-----\n");
 
-  int* sorted_array = insert_sort(random_array, ARRAY_SIZE);
-  print_array(sorted_array, ARRAY_SIZE);
+  insert_sort(random_array, ARRAY_SIZE);
+  print_array(random_array, ARRAY_SIZE);
 
   // メモリを開放する。
   free(random_array);

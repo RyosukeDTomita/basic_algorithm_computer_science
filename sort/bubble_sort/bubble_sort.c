@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #define ARRAY_SIZE 20
 
-int* bubble_sort(int array[], int array_size);
+void bubble_sort(int array[], int array_size);
 int* create_random_array(void);
 void print_array(int* array, int array_size);
 
@@ -24,7 +24,7 @@ int* create_random_array(void) {
 /**
  * bubble sort
  */
-int* bubble_sort(int* array, int array_size) {
+void bubble_sort(int* array, int array_size) {
   for (int i = 0; i < array_size; i++) {
     for (int j = 0; j < array_size - i - 1; j++) {
       if (array[j] > array[j + 1]) {
@@ -34,7 +34,6 @@ int* bubble_sort(int* array, int array_size) {
       }
     }
   }
-  return array;
 }
 
 /**
@@ -55,8 +54,8 @@ int main(void) {
 
   printf("-----bubble, sort-----\n");
 
-  int* sorted_array = bubble_sort(random_array, ARRAY_SIZE);
-  print_array(sorted_array, ARRAY_SIZE);
+  bubble_sort(random_array, ARRAY_SIZE);
+  print_array(random_array, ARRAY_SIZE);
 
   // メモリを開放する。
   free(random_array);
