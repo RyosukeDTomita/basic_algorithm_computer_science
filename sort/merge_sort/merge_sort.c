@@ -39,7 +39,7 @@ int* create_random_array(void) {
  */
 void merge_sort(int array[], int left_idx, int right_idx) {
   // 配列のサイズが1になるまで繰り返す。
-  if ((left_idx + 1) < right_idx) {
+  if (right_idx - left_idx > 1) {
     int mid_idx = (left_idx + right_idx) / 2;  // 切り捨て
     merge_sort(array, left_idx, mid_idx);
     merge_sort(array, mid_idx, right_idx);
