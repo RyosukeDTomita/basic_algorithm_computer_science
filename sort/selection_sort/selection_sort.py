@@ -27,8 +27,10 @@ def selection_sort(array: List[int]) -> List[int]:
 
 def main():
     random.seed(3)  # randomシードを指定
-    my_array = [random.randint(0, 99) for i in range(20)]
-    print(selection_sort(my_array))
+    random_array = [random.randint(0, 99) for i in range(20)]
+    print(random_array)
+    print("-----SELECTION SORT-----")
+    print(selection_sort(random_array))
 
 
 if __name__ == "__main__":

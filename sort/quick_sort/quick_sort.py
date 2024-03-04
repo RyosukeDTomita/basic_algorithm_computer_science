@@ -29,10 +29,10 @@ def quick_sort(array: List[int]) -> List[int]:
 
 
 def main():
-    my_array = [random.randint(0, 100) for _ in range(15)]
-    print(my_array)
+    random_array = [random.randint(0, 100) for _ in range(15)]
+    print(random_array)
     print("-----QUICK SORT-----")
-    print(quick_sort(my_array))
+    print(quick_sort(random_array))
 
 
 if __name__ == "__main__":

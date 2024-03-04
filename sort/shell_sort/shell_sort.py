@@ -25,10 +25,10 @@ def shell_sort(array):
 
 def main():
     random.seed(3)  # randomシードを指定
-    my_array = [random.randint(0, 99) for _ in range(20)]
-    print(my_array)
+    random_array = [random.randint(0, 99) for _ in range(20)]
+    print(random_array)
     print("-----SHELL SORT-----")
-    print(shell_sort(my_array))
+    print(shell_sort(random_array))
 
 
 if __name__ == "__main__":

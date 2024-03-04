@@ -48,10 +48,10 @@ def _merge_arrays(left: List[int], right=[]) -> List[int]:
 
 def main():
     random.seed(3)
-    my_array = [random.randint(0, 100) for _ in range(15)]
-    print(my_array)
+    random_array = [random.randint(0, 100) for _ in range(15)]
+    print(random_array)
     print("-----MERGE SORT-----")
-    print(merge_sort(my_array))
+    print(merge_sort(random_array))
 
 
 if __name__ == '__main__':
