@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #define ARRAY_SIZE 20
 
-int linear_search(int array[], int array_size, int target);
+int binary_search(int* array, int array_size, int target);
 int* create_random_array(void);
 void print_array(int* array, int array_size);
 
@@ -22,16 +22,29 @@ int* create_random_array(void) {
 }
 
 /**
- * linear search
+ * binary search
  */
-int linear_search(int* array, int array_size, int target) {
-  for (int i = 0; i < array_size; i++) {
-    if (array[i] == target) {
-      return i;
+int binary_search(int* array, int array_size, int target) {
+  int left_idx = 0;
+  int right_idx = array_size - 1;
+  int mid_idx;
+  while (left_idx < right_idx) {
+    mid_idx = (left_idx + right_idx) / 2;  // 切り捨て
+    if (target < array[mid_idx]) {
+      right_idx = mid_idx;
+    } else if (target == array[mid_idx]) {
+      return 1;
+    } else {
+      left_idx = mid_idx + 1;
     }
   }
-  return -999;
+  return (array[mid_idx] == target);
 }
+
+/**
+ * qsortにつかうcomparator
+ */
+int compare(const void* a, const void* b) { return (*(int*)a - *(int*)b); }
 
 /**
  * 1次元配列をprintする
@@ -50,16 +63,19 @@ int main(void) {
   print_array(random_array, ARRAY_SIZE);
 
   printf("%s\n", "-----LINEAR SEARCH-----");
+  // 事前にソートが必用
+  qsort(random_array, ARRAY_SIZE, sizeof(int), compare);
+  print_array(random_array, ARRAY_SIZE);
 
   // 配列に存在する数でテスト
   int target = 1;
-  int result = linear_search(random_array, ARRAY_SIZE, target);
-  printf("%d index is %d\n", target, result);
+  int result = binary_search(random_array, ARRAY_SIZE, target);
+  printf("%d is %d\n", target, result);
 
   // 配列に存在しない数でテスト
   target = 3;
-  result = linear_search(random_array, ARRAY_SIZE, 3);
-  printf("%d index is %d\n", target, result);
+  result = binary_search(random_array, ARRAY_SIZE, target);
+  printf("%d is %d\n", target, result);
 
   // メモリを開放する。
   free(random_array);
