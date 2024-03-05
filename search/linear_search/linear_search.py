@@ -5,9 +5,10 @@
 計算量はO(n)
 """
 import random
+from typing import List
 
 
-def linear_search(array, target):
+def linear_search(array: List[int], target: int) -> bool:
     """
     線形探索
     """
