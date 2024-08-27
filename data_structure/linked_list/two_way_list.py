@@ -13,7 +13,6 @@ class Node:
 
 class DoubleLinkedList:
     def __init__(self):
-        self.head = None
 
     def insert(self, data: int) -> None:
 
