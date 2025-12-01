@@ -14,7 +14,7 @@ def insert_sort(array: List[int]) -> List[int]:
     # ループが1から始まっているのに注意。
     for i in range(1, len(array)):
         tmp = array[i]
-        j = i
+        j = i # jはtmpを挿入する位置を示すindex
 
         # 取り出したtmpと取り出した位置よりひとつ左隣のarray[j-1]の値を比較し，tmpが小さければ入れ替える操作を繰り返す。
         while (j > 0) and (array[j - 1] > tmp):
@@ -27,6 +27,7 @@ def insert_sort(array: List[int]) -> List[int]:
 def main():
     random.seed(3)  # randomシードを指定
     random_array = [random.randint(0, 99) for _ in range(20)]
+    print(random_array)
     print(insert_sort(random_array))
 
 
