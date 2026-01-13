@@ -27,6 +27,8 @@
               ps.vector
               ps.containers
               ps.bytestring
+              ps.unordered-containers
+              ps.hashable
             ]))
             pkgs.haskell.packages.ghc96.cabal-install
             pkgs.haskell.packages.ghc96.haskell-language-server
