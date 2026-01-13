@@ -1,0 +1,13 @@
+cradle:
+  direct:
+    arguments:
+      - -package
+      - hashable
+      - -package
+      - vector
+      - -package
+      - containers
+      - -package
+      - bytestring
+      - -package
+      - unordered-containers
