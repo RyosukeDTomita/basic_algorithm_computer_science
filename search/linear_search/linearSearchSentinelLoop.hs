@@ -1,3 +1,4 @@
+-- 高級言語の場合はやっても分岐の数は減らないので意味がない。
 linearSearch :: [Int] -> Int -> Int
 linearSearch xs target =
   let xs' = xs ++ [target] -- 番兵を追加
