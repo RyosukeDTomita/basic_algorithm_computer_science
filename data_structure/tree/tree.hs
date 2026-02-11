@@ -1,4 +1,4 @@
-data Tree a = Node a [Tree a] deriving (Show)
+data Tree a = Node a [Tree a] deriving (Show) -- 型コンストラクタとしてTreeをデータコンストラクタとしてNodeを作成
 
 -- 葉ノード（子を持たないノード）を作成
 leaf :: a -> Tree a
@@ -11,14 +11,14 @@ rootValue (Node x _) = x
 -- 特定の値を持つノードの子として新しい値を挿入
 -- 見つからない場合は元の木を返す
 insertAt :: (Eq a) => a -> a -> Tree a -> Tree a
-insertAt target newVal (Node x cs)
-  | x == target = Node x (leaf newVal : cs)
-  | otherwise = Node x (map (insertAt target newVal) cs)
+insertAt target newVal (Node x children)
+  | x == target = Node x (leaf newVal : children)
+  | otherwise = Node x (map (insertAt target newVal) children) -- mapするのはすべての子要素について調査するため
 
 -- 特定の値を持つノードを削除（子ノードは親に昇格）
 -- ルートノードは削除できない
 delete :: (Eq a) => a -> Tree a -> Tree a
-delete target (Node x cs) = Node x (concatMap (deleteHelper target) cs)
+delete target (Node x children) = Node x (concatMap (deleteHelper target) children)
   where
     deleteHelper :: (Eq a) => a -> Tree a -> [Tree a]
     deleteHelper t (Node v children')
@@ -27,33 +27,33 @@ delete target (Node x cs) = Node x (concatMap (deleteHelper target) cs)
 
 -- 木に特定の値が含まれているか検索
 contains :: (Eq a) => a -> Tree a -> Bool
-contains target (Node x cs) = x == target || any (contains target) cs
+contains target (Node x children) = x == target || any (contains target) children
 
 -- 木のサイズ（ノード数）を取得
 size :: Tree a -> Int
-size (Node _ cs) = 1 + sum (map size cs)
+size (Node _ children) = 1 + sum (map size children)
 
 -- 木の深さを取得
 depth :: Tree a -> Int
 depth (Node _ []) = 1
-depth (Node _ cs) = 1 + maximum (map depth cs)
+depth (Node _ children) = 1 + maximum (map depth children)
 
 -- 木を整形して表示（枝を使って階層構造を明確化）
 prettyPrint :: (Show a) => Tree a -> String
 prettyPrint tree = go "" "" tree
   where
-    go prefix childPrefix (Node x cs) =
+    go prefix childPrefix (Node x children) =
       prefix
         ++ show x
         ++ "\n"
-        ++ drawChildren childPrefix cs
+        ++ drawChildren childPrefix children
 
     drawChildren _ [] = ""
     drawChildren prefix [c] =
       go (prefix ++ "└── ") (prefix ++ "    ") c
-    drawChildren prefix (c : cs') =
+    drawChildren prefix (c : children') =
       go (prefix ++ "├── ") (prefix ++ "│   ") c
-        ++ drawChildren prefix cs'
+        ++ drawChildren prefix children'
 
 main :: IO ()
 main = do
