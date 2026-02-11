@@ -48,3 +48,17 @@
 ---
 
 ## ツリー(Tree)
+
+### 普通の木
+
+- 各ノードが複数の子ノードを持つことができるデータ構造。
+
+#### 実装例
+
+- [ ] Python
+- [ ] C
+- [x] Haskell
+
+### BST(Binary Search Tree)
+
+[../search/bst/](../search/bst/)に実装した。
