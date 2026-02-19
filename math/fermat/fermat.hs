@@ -1,8 +1,11 @@
+{-# LANGUAGE NumDecimals #-}
+
 import Data.Int (Int64)
 
 -- 法となる素数: 32 bit整数の最大値である2.1 * 10^9に近い
 modulus :: Int64
-modulus = 10 ^ 9 + 7
+-- modulus = 10 ^ 9 + 7
+modulus = 1e9 + 7 -- NumDecimals拡張を使うとコンパイル時に1000000007に展開される。
 
 -- 繰り返し二乗法による (n^k) mod modulus の計算
 -- e.g. x^9の場合: x^2 = x * x
