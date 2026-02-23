@@ -1,3 +1,5 @@
+import Data.List (find)
+
 data Tree a = Node a [Tree a] deriving (Show) -- 型コンストラクタとしてTreeをデータコンストラクタとしてNodeを作成
 
 -- 葉ノード（子を持たないノード）を作成
@@ -38,6 +40,19 @@ depth :: Tree a -> Int
 depth (Node _ []) = 1
 depth (Node _ children) = 1 + maximum (map depth children)
 
+-- ある要素から見た親を探す
+findParent :: (Eq a, Num a) => Tree a -> a -> a
+findParent (Node x children) v
+  | v `elem` map rootValue children = x
+  | otherwise =
+      foldr
+        ( \child acc -> case findParent child v of
+            -1 -> acc
+            p -> p
+        )
+        (-1)
+        children
+
 -- 木を整形して表示（枝を使って階層構造を明確化）
 prettyPrint :: (Show a) => Tree a -> String
 prettyPrint tree = go "" "" tree
@@ -73,3 +88,7 @@ main = do
   let tree3 = delete 2 tree2
   print tree3
   putStr $ prettyPrint tree3
+
+  -- 親を探す
+  let parentOf4 = findParent tree2 4
+  print parentOf4
