@@ -38,3 +38,14 @@ a * a^(p-2) ≡ 1 (mod p) となり、a^(p-2) が a の法的逆元となる。
 - [] C
 - [] Python
 - [x] Haskell
+
+---
+
+## 円周率の多角形近似
+
+[pi](./pi)
+
+
+- [] C
+- [] Python
+- [x] Haskell
